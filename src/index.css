@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+/* Theme Custom Colors */
+@theme {
+    --color-t-primary: #FD8549;
+    --color-t-secondary: #2F3C4C;
+    --color-t-background: #F6FDFE;
+}
+
+.active{
+    color: #FD8549;
+}
