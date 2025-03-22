@@ -77,7 +77,11 @@ const Navbar = () => {
         <div className="navbar-end">
           {user ? (
             <div>
-              <p>{user.displayName}</p>
+              <img
+                src={user?.photoURL}
+                alt={user.displayName}
+                className="w-14 h-14 rounded-full border-2 border-orange-500"
+              />
             </div>
           ) : (
             <button onClick={handleGoogleSignIn} className="btn">

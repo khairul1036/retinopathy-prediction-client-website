@@ -2,7 +2,7 @@ import useAuth from "../hook/useAuth";
 
 const Home = () => {
 const {user} = useAuth()
-console.log(user);
+// console.log(user);
   return (
     <div className="min-h-screen max-w-xl">
       <p className="text-t-secondary">helll</p>

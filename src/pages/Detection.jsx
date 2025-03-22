@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Loading from "../components/loading/Loading";
+import useAuth from "../hook/useAuth";
 
 const Detection = () => {
+  const {user} = useAuth()
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false); // For loading state
   const [error, setError] = useState(null); // For error state
@@ -69,6 +71,8 @@ const Detection = () => {
       const response = await axios.post(
         `${import.meta.env.VITE_serverApi}/predict-image`,
         {
+          user_name: user?.displayName,
+          user_email: user?.email,
           image_url: image_url,
         }
       );
