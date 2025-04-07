@@ -24,10 +24,18 @@ const Navbar = () => {
         <NavLink to={"/"}>Home</NavLink>
       </li>
       <li>
-        <NavLink to={"/detection"}>Detection</NavLink>
+        {user ? (
+          <NavLink to="/detection">Detection</NavLink>
+        ) : (
+          <button onClick={userGoogleLogin}>Detection</button>
+        )}
       </li>
       <li>
-        <NavLink to={"/profile"}>Profile</NavLink>
+        {user ? (
+          <NavLink to={"/profile"}>Profile</NavLink>
+        ) : (
+          <button onClick={userGoogleLogin}>Profile</button>
+        )}
       </li>
       {user ? (
         <li>
@@ -78,6 +86,7 @@ const Navbar = () => {
           {user ? (
             <div>
               <img
+                referrerPolicy="no-referrer"
                 src={user?.photoURL}
                 alt={user.displayName}
                 className="w-14 h-14 rounded-full border-2 border-orange-500"

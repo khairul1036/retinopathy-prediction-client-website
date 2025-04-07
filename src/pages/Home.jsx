@@ -1,13 +1,23 @@
-import useAuth from "../hook/useAuth";
+import Banner from "../components/banner/Banner";
+import NewsLetter from "../components/newsLetter/NewsLetter";
+import OurService from "../components/ourService/OurService";
+import Ourteam from "../components/ourTeam/Ourteam";
+import Stat from "../components/stat/Stat";
+import TopRatedDoctors from "../components/topDoc/TopRatedDoctors";
+import WhyChooseUs from "../components/whyChooseUs/WhyChooseUs";
 
 const Home = () => {
-const {user} = useAuth()
+
 // console.log(user);
   return (
-    <div className="min-h-screen max-w-xl">
-      <p className="text-t-secondary">helll</p>
-      <p className="text-t-primary">helll</p>
-      <p className="text-t-background">helll</p>
+    <div>
+      <Banner/>
+      <WhyChooseUs/>
+      <Stat/>
+      <OurService/>
+      <TopRatedDoctors/>
+      <Ourteam/>
+      <NewsLetter/>
     </div>
   );
 };

@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react";
 import useAuth from "../hook/useAuth";
 import axios from "axios";
-import Loading from "../components/loading/Loading";
 
 const Profile = () => {
   const { user } = useAuth();
   const [predictedDatas, setPredictedDatas] = useState([]);
   const [selectedData, setSelectedData] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true); // Start loading
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_serverApi}/all-detected-image?email=${
@@ -25,8 +22,6 @@ const Profile = () => {
         }
       } catch (error) {
         console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false); // End loading
       }
     };
 
@@ -47,47 +42,34 @@ const Profile = () => {
 
   return (
     <div className="max-w-screen-2xl min-h-screen mx-auto p-5">
-      <h1 className="text-3xl font-semibold mb-5 border-b text-gray-700 border-gray-300 pb-2">
+      <h1 className="text-3xl font-semibold mb-5">
         Welcome back,{" "}
-        <span className="text-gray-800">{user?.displayName}</span>
+        <span className="text-orange-500">{user?.displayName}</span>
       </h1>
 
-      {/* Loading Spinner */}
-      {loading ? (
-        <div className="flex justify-center items-center min-h-[200px]">
-          <Loading/>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-          {predictedDatas.length === 0 ? (
-            <div className="col-span-full text-center text-xl font-semibold">
-              No images found
-            </div>
-          ) : (
-            predictedDatas.map((predictedData, index) => {
-              return (
-                <div key={index} className="relative group w-full p-2">
-                  <img
-                    src={predictedData.image_url}
-                    alt={`predicted-image-${index}`}
-                    className="w-full h-56 object-cover rounded-lg transition-all duration-300"
-                  />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        {predictedDatas.map((predictedData, index) => {
+          return (
+            <div key={index} className="relative group w-full p-2">
+              <img
+                src={predictedData.image_url}
+                alt={`predicted-image-${index}`}
+                className="w-full h-56 object-cover rounded-lg transition-all duration-300"
+              />
 
-                  {/* Hover effect to show "Details" button */}
-                  <div className="absolute inset-0 flex justify-center items-center bg-gray-400/60 bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button
-                      onClick={() => handleDetailsClick(predictedData)}
-                      className="px-4 py-2 bg-white text-black rounded-lg hover:bg-gray-200 transition cursor-pointer"
-                    >
-                      Details
-                    </button>
-                  </div>
-                </div>
-              );
-            })
-          )}
-        </div>
-      )}
+              {/* Hover effect to show "Details" button */}
+              <div className="absolute inset-0 flex justify-center items-center bg-gray-400/60 bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button
+                  onClick={() => handleDetailsClick(predictedData)}
+                  className="px-4 py-2 bg-white text-black rounded-lg hover:bg-gray-200 transition cursor-pointer"
+                >
+                  Details
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
 
       {/* Modal */}
       {showModal && (
