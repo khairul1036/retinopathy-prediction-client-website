@@ -49,7 +49,7 @@ const Profile = () => {
     <div className="max-w-screen-2xl min-h-screen mx-auto p-5">
       <h1 className="text-3xl font-semibold mb-5 border-b text-gray-700 border-gray-300 pb-2">
         Welcome back,{" "}
-        <span className="text-gray-800">{user?.displayName}</span>
+        <span className="text-[#0aa7c3]">{user?.displayName}</span>
       </h1>
 
       {/* Loading Spinner */}

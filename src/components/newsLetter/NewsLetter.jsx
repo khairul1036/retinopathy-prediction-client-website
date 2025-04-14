@@ -1,6 +1,6 @@
 export default function NewsLetter() {
     return (
-      <div className="flex justify-center items-center p-6">
+      <div className="flex justify-center items-center px-6 py-20">
         <div className="w-full max-w-3xl bg-white border border-blue-300 rounded-lg shadow-lg p-6 text-center">
           <h2 className="text-2xl font-semibold">Sign Up For Newsletter</h2>
           <p className="text-gray-600 mt-2">

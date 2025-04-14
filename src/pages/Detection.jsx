@@ -9,6 +9,7 @@ const Detection = () => {
   const [loading, setLoading] = useState(false); // For loading state
   const [error, setError] = useState(null); // For error state
   const [predictedResult, setPredictedResult] = useState("");
+  const [lang, setLang] = useState("EN");
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -117,7 +118,7 @@ const Detection = () => {
             <>
               <button
                 onClick={() => setImage(null)}
-                className="py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                className="py-2 px-4 cursor-pointer bg-red-500 text-white rounded-lg hover:bg-red-600"
               >
                 Remove Image
               </button>
@@ -125,7 +126,7 @@ const Detection = () => {
               <button
                 onClick={handleImageUpload}
                 disabled={loading}
-                className={`mt-4 py-2 px-4 ${
+                className={`cursor-pointer mt-4 py-2 px-4 ${
                   loading ? "bg-gray-400" : "bg-blue-500"
                 } text-white rounded-lg hover:bg-blue-600`}
               >
@@ -145,13 +146,23 @@ const Detection = () => {
         <div className="pt-10">
           <h2>
             <span className="font-semibold">Predicted Disease:</span>
-            <span className="pl-2">{predictedResult.predicted_class}</span>
+            <span className="pl-2">{predictedResult?.predicted_class}</span>
           </h2>
+
+          {/* Language Toggle Button */}
+          <div className="flex justify-between items-center mb-4">
           <p className="font-semibold pt-5 pb-2">Suggestion: </p>
-          <p>{predictedResult.english}</p>
-          <br />
-          <br />
-          <p>{predictedResult.bangla}</p>
+            <button
+              onClick={() => setLang(lang === "EN" ? "BN" : "EN")}
+              className="cursor-pointer px-3 py-1 border text-[#00BDE0] border-[#00BDE0] rounded-lg hover:text-white hover:bg-[#00BDE0] transition"
+            >
+              {lang === "EN" ? "বাং" : "EN"}
+            </button>
+          </div>
+          {/* Conditional Content */}
+          <p>
+            {lang === "EN" ? predictedResult?.english : predictedResult?.bangla}
+          </p>
         </div>
       </div>
     </div>

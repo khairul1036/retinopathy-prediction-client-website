@@ -1,6 +1,8 @@
 import React from "react";
 import useAuth from "../../hook/useAuth";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { FiLogOut } from "react-icons/fi";
+import { FaGoogle } from "react-icons/fa";
 
 const Navbar = () => {
   const { userGoogleLogin, user, logOut } = useAuth();
@@ -39,7 +41,14 @@ const Navbar = () => {
       </li>
       {user ? (
         <li>
-          <button onClick={logOut}>Logout</button>
+          {/* <button onClick={logOut}>Logout</button> */}
+          <button
+            onClick={logOut}
+            className="flex items-center gap-2 px-2 py-1 border border-red-500 text-red-500 rounded-md hover:text-white hover:bg-red-500 transition-all duration-200"
+          >
+            <FiLogOut className="text-lg" />
+            <span>Logout</span>
+          </button>
         </li>
       ) : (
         ""
@@ -76,7 +85,8 @@ const Navbar = () => {
             </ul>
           </div>
           <Link to={"/"} className="font-bold text-2xl">
-            Logo
+            <span className="text-[#0aa7c3] pr-2">RetinoScan</span>
+            <span className="text-[#03297a]">AI</span>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -89,12 +99,19 @@ const Navbar = () => {
                 referrerPolicy="no-referrer"
                 src={user?.photoURL}
                 alt={user.displayName}
-                className="w-14 h-14 rounded-full border-2 border-orange-500"
+                className="w-14 h-14 rounded-full border-2 border-[#00BDE0]"
               />
             </div>
           ) : (
-            <button onClick={handleGoogleSignIn} className="btn">
-              Login
+            // <button onClick={handleGoogleSignIn} className="btn">
+            //   Login
+            // </button>
+            <button
+              onClick={handleGoogleSignIn}
+              className="flex items-center gap-2 px-2 py-1 border border-[#0aa7c3] text-[#0aa7c3] rounded-md hover:text-white hover:bg-[#0aa7c3] transition-all duration-200 cursor-pointer"
+            >
+              <FaGoogle className="text-lg" />
+              <span>Login with Google</span>
             </button>
           )}
         </div>
