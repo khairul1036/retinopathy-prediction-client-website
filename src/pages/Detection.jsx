@@ -139,7 +139,7 @@ const Detection = () => {
       </div>
       {loading ? <Loading /> : ""}
       {/* output  */}
-      <div className="lg:w-1/2 bg-gray-50 p-5 rounded-2xl shadow mt-10 lg:mt-0">
+      <div className="lg:w-1/2 bg-gray-50/50 p-5 rounded-2xl shadow mt-10 lg:mt-0">
         <h1 className="text-center font-semibold text-2xl underline">
           Result & Suggestion
         </h1>
